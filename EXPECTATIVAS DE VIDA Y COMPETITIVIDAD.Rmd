@@ -62,6 +62,27 @@ print("Conteo de observaciones válidas para la Prueba T (Alcohol):")
 print(conteo_alcohol)
 ```
 
+
+```{r descriptive-comparison, message=FALSE}
+# Cálculo de estadísticas descriptivas agrupadas por 'Status'
+comparacion_descriptiva <- datos_2015 %>%
+  group_by(Status) %>%
+  summarise(
+    N = n(),
+
+    # Medias y SDs para las variables clave
+    Alcohol_Media = mean(`Alcohol`, na.rm = TRUE),
+    Vida_Media = mean(`Life Expectancy`, na.rm = TRUE),
+    Mortalidad_Adultos_Media = mean(`Adult Mortality`, na.rm = TRUE),
+    Muertes_Infantes_Media = mean(`Infant Deaths`, na.rm = TRUE),
+    Escolarizacion_Media = mean(`Schooling`, na.rm = TRUE)
+  )
+
+# Mostrar la tabla
+print(comparacion_descriptiva)
+```
+
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
