@@ -83,6 +83,27 @@ print(comparacion_descriptiva)
 ```
 
 
+```{r boxplots, fig.height=5, fig.width=10}
+# Para mostrar múltiples gráficas en una fila
+library(patchwork)
+
+# Gráfica de Expectativa de Vida
+p1 <- ggplot(datos_2015, aes(x = Status, y = `Life Expectancy`, fill = Status)) +
+  geom_boxplot() +
+  labs(title = "Expectativa de Vida vs. Estatus", y = "Expectativa de Vida (años)") +
+  theme_minimal() + theme(legend.position = "none")
+
+# Gráfica de Consumo de Alcohol
+p2 <- ggplot(datos_2015, aes(x = Status, y = `Alcohol`, fill = Status)) +
+  geom_boxplot() +
+  labs(title = "Consumo de Alcohol vs. Estatus", y = "Consumo (litros)") +
+  theme_minimal() + theme(legend.position = "none")
+
+# Combina las dos gráficas
+p1 + p2
+```
+
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
