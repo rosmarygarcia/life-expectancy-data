@@ -1,0 +1,266 @@
+---
+title: "CONTINUACIÓN MONOGRAFIA FINAL COMPU i"
+author: "Danmara Dos Ramos y Rosmary Garcia"
+date: "2025-10-22"
+output: html_document
+---
+
+PLANTEAMIENTO DE LA INVESTIGACIÓN
+  La competitividad según la define el Forum Economico Mundial (2016), es “el conjunto de instituciones, políticas y factores que determinan el nivel de productividad de un país” en el tiempo y un elemento diferenciador desde el punto de vista de los países, que comunmente son caracterizados como desarrollados o en vías de desarrollo, sin considerar estrictamente su nivel de competitividad, cual podemos a modo ilustrativo inferir de la observación del el siguiente vídeo de Jans Rosling.
+  
+  ![Texto alternativo](https://www.youtube.com/watch?v=jbkSRLYSojo&pp=ugMICgJlcxABGAHKBQxoYW5zIHJvc2xpbmc%3D)
+  
+  En tal sentido,desde 1979 y hasta el presente el Forum Económico Mundial como organización internacional privada creada en 1971 sin fines de lucro y con sede  Cologny, Suiza, para mejorar el estado del mundo y servir como plataforma para la cooperación público-privada en temas como la economía, la salud y el medio ambiente, elabora un Indice de Competitividad donde se miden 12 pilares, entre ellos, el de salud y eduación que se relaciona con algunas variables determinantes para el analisis e interpretacion de las expectativas de vida de los diferentes paises, dentro o fuera de la Organización de Naciones Unidas (ONU). 
+
+![Texto alternativo](https://assets.weforum.org/editor/eAYvGAf9gjxX0c3nS9widuCPy0AjnQ9DbstTRUZ6v_s.png)
+  
+
+  Entonces, en el contexto de la competitividad podemos equiparar a esta la distintición entre países desarrollados y en vías de desarrollo y así, conforme a los datos disponibles sobre expectativas de vida de Estados miembros de  distintos esquemas de integracion economica, donde figuran, entre otros países por América: la Comunidad Andina de Naciones (CAN) con Bolivia, Colombia, Ecuador y Perú; el Mercado Común del Sur (Mercosur) con Argentina, Brasil, Paraguay y Uruguay; México, Estados Unidos y Canadá con un tratado multilateral conocido como T-MEC y por Europa, la Unión Europea (EU)con Alemania, Austria, Bélgica, Bulgaria, Chipre, Croacia, Dinamarca, Eslovaquia, Eslovenia, España, Estonia, Finlandia, Francia, Grecia, Hungría, Irlanda, Italia, Letonia, Lituania, Luxemburgo, Malta, Países Bajos, Polonia, Portugal, República Checa, Rumanía y Suecia. Cada unos de ellos en relación a Venezuela como ex miembro de la CAN, país suspendido indefinidamnente de MERCOSUR y Estado Sancionado por medidas unilaterales y coercitivas por la mayoría de los países miembros de la Union Europea (UE):Xy  de la T-MEC, estudiar las variables de status, expectativa de vida, mortalidad adultos, muertes infantiles y escolarización condicionadas por la ingesta de alcohol (etílico), a fin de conocer si el consumo de tal droga lícita afectó o no el status de países desarrollados o en vías de desarrollo, para el año 2015, ya que aún cuando se reconoce que la producción de este producto o derivados a partir del mismo como materia prima para la explosión de la producción propicia crecimiento y riquezas nacionales a través de la creación de fuentes de empleos directas e indirectas para sectores turisticos, restauranteros, otros, es innegable que un consumo exagerado del mismo puede afectar la productividad de las empresas, y con ello la del país, por enfermedades o muertes asociadas a este entre los trabajadores dependientes o independientes a causa de reposos, accidentes laborales, explosiones defectuosas de mercancias, etc. 
+  
+  ![Texto alternativo]( https://www.elnuevosiglo.com.co/sites/default/files/2017-09/08-INFOGRAFIA-ok.jpg )
+  
+  
+  Es decir, hay efectos económicos no deseables por el abuso del alcohol y  son tanto perjudiciales para las naciones como sus efectos sobre la salud, afectando a la familia, la comunidad y a personas de todas las edades. Por, ejemplo, el consumo de alcohol entre menores de edad interfiere en el desarrollo infantil, lo que afecta la capacidad del país para responder a los desafíos económicos futuros(Burke, s/a).
+  
+
+![Texto alternativo](https://assets.weforum.org/editor/eT9bBT0G_q9VFB0B3ZEI0VNolMHK5BeDDCuqhVcz2_Q.jpg)
+
+
+Por ello, y cual afirma Alcolea (2024), más de 2.000 millones de personas son bebedores habituales, según la Organización Mundial de la Salud y por ello, algunos países luchan contra el fantasma del alcoholismo.
+
+![Texto alternativo](https://i.blogs.es/abbfb6/mapa/1366_2000.jpeg)
+  
+  INTERROGANTE
+  
+   ¿Cómo es el consumo de alcohol en países desarrollados y en vías de desarrollo en 2015, medida por las variables expectativa de vida, moratlidad de adultos, muerte de infantes y escolarización afectaria la competitividad?
+   
+   ![Texto alternativo](https://img.freepik.com/vector-gratis/globo-terraqueo-borracho-botellas-alcohol_1308-119717.jpg)
+   
+  
+  OBJETIVO GENERAL
+ 
+    Determinar si el consumo de alcohol es un predictor estadísticamente significativo de la clasificación de Estatus  de los países miembros de la CAN, MERCOSUR, T-MEC y la Unión Europea utilizando un modelo de Regresión Logística Binaria 
+
+![Texto alternativo](https://thumbs.dreamstime.com/b/tierra-borracha-del-planeta-con-la-botella-137221786.jpg?w=576)
+
+
+  OBJETIVOS ESPECÍFICOS
+
+1. Transformar subconjunto de datos para los países y años seleccionados (2008-2015)
+2. Ajustar un modelo de Regresión Logística Binaria 
+3. Analizar los resultados
+
+VARIABLES EN ESTUDIO
+•	Country = País observado
+•	Year = Año observado
+•	Status = Estado desarrollado o en desarrollo.
+•	Life.expectancy = Esperanza de vida en años
+•	Adult.Mortality = Tasas de mortalidad en adultos de ambos sexos (probabilidad de morir entre 15 y 60 años/1000 habitantes).
+•	infant.deaths = Número de muertes infantiles por cada 1000 habitantes
+•	Alcohol = Consumo de alcohol registrado per cápita (mayores de 15 años) (en litros de alcohol puro).
+•	Schooling = Número de años de estudio
+
+PERÍODO DE ESTUDIO
+Años 2000-2015
+
+
+
+TÉCNICA DE ANALISIS DE DATOS
+Regresión Logística Binaria
+
+La regresión logística, también conocido como modelo logit, según IBM, es una técnica que estima la probabilidad de que ocurra un evento, por ejemplo, votar o no votar, en función de un conjunto de datos determinado de variables independientes. Así, se trata de un modelo estadístico utilizado comúnmente para la clasificación y el análisis predictivo. Dado que el resultado es una probabilidad, la variable dependiente está limitada entre 0 y 1.
+
+En virtud de lo anterior, encontramos que la competitividad de un país se puede clasificar operacionalmente utilizando la variable Estatus (Desarrollado o En Desarrollo) para determinar si un factor de estilo de vida como el consumo per cápita de alcohol  tiene una asociación estadísticamente significativa con esta clasificación es crucial para la política de salud y desarrollo.El consumo de alcohol, una variable continua, necesita ser evaluado como predictor de una variable binaria (Estatus). Por lo tanto, se utilizará la Regresión Logística Binaria para estimar la probabilidad de que un país sea clasificado como "Desarrollado" en función de su nivel de consumo de alcohol, controlando por el efecto de otros factores como la Mortalidad Adulta y la Escolaridad.
+
+
+#INSTALACIÓN E IMPORTACIÓN DE LIBRERIAS
+
+```{r}
+## Instalación e importación de las librerias
+
+install.packages("tidyverse")
+install.packages("janitor")
+install.packages("lubridate")
+install.packages("readxl")
+install.packages("car")
+install.packages("lmtest")
+install.packages("reticulate")
+install.packages("caret")
+install.packages("GGally")
+install.packages("rmarkdown")
+
+library(janitor)
+library(lubridate)
+library(tidyverse)
+library(readxl)
+library(car)
+library(readxl)
+library(car)
+library(lmtest)
+library(caret)
+library(GGally)
+library(reticulate)
+library(rmarkdown)
+
+py_install(packages = "matplotlib")
+py_install(packages = "pandas")
+```
+```{r}
+
+```
+
+# CARGA DE LOS DATOS
+
+```{r}
+## Carga de los Datos y verificación de la estructura
+
+# Carga de los Datos
+le <- read.csv("Life_Expectancy_Dataset.csv")
+
+# Vista de los Datos como tabla
+paged_table(le)
+
+# Verificación de la estructura
+le %>% glimpse()
+
+
+```
+
+# LIMPIEZA DE LOS DATOS PARA LOGIT: SELECCIÓN DE PAÍSES DE INTERÉS
+
+```{r}
+
+paises_interes <- c("Germany", "Argentina", "Austria", "Belgium", "Bolivia", 
+                    "Brazil", "Bulgaria", "Canada", "Cyprus", "Colombia", 
+                    "Croatia", "Denmark", "Ecuador", "Slovakia", "Slovenia", 
+                    "Spain", "United States of America", "Estonia", "Finland", 
+                    "France", "Greece", "Hungary", "Ireland", "Italy", 
+                    "Latvia", "Lithuania", "Luxembourg", "Malta", 
+                    "Netherlands", "Paraguay", "Peru", "Poland", "Portugal", 
+                    "Czech Republic", "Romania", "Sweden", "Uruguay", 
+                    "Venezuela (Bolivarian Republic of)")
+names(le)
+
+## Renombrar y seleccionar columnas clave
+data_renombrado <- le %>%
+  rename(
+    Pais = Country,
+    Año = Year,
+    Estatus = Status,
+    Mortalidad_Adultos = `Adult.Mortality`,
+    Alcohol = Alcohol,
+    Escolaridad = Schooling,
+    Muertes_Infantiles = `infant.deaths` 
+    
+    # Se incluye para la limpieza inicial, aunque no será predictora central.
+  ) %>%
+  select(Pais, Año, Estatus, Mortalidad_Adultos, Alcohol, Escolaridad)
+
+# FiltraDO DE DATOS por el rango de años y la lista de países
+
+data_filtrada <- data_renombrado %>%
+  filter(Año >= 2008, Año <= 2015) %>%
+  filter(Pais %in% paises_interes)
+
+# Eliminar filas con valores faltantes (NA) para el análisis
+data_logistica <- na.omit(data_filtrada)
+```
+
+
+# TRANSFORMACIÓN DE LA VARIABLE DEPENDIENTE: ESTATUS COMO FACTOR EN REFERENCIA PAÍS EN DESARROLO PARA ESTIMAR LA PROBABILIDAD DE SER DESARROLLADO
+```{r}
+# --- 3. Transformación de la Variable Dependiente.
+
+
+data_logistica <- data_logistica %>%
+  mutate(
+    Estatus = factor(Estatus, levels = c("Developing", "Developed"))
+  )
+```
+
+
+
+##EJECUCIÓN Y ANÁLISIS DEL MODELO
+```{r}
+##Ejecución y Análisis del Modelo  de Regresión Logística Binaria ---
+
+# Modelo: Log(Odds de ser Desarrollado) ~ Alcohol + Mortalidad_Adultos + Escolaridad
+
+modelo_logistico <- glm(Estatus ~ Alcohol + Mortalidad_Adultos + Escolaridad,
+                        data = data_logistica,
+                        family = binomial(link = "logit"))
+
+
+```
+
+
+#ESTADÍSTICAS DEL MODELO
+```{r}
+##Resumen del Modelo (Logaritmo de Odds) ---
+summary(modelo_logistico)
+```
+
+## INTERPRETACIÓN DE RESULTADOS
+```{r}
+# Interpretación de Odds Ratios (OR) ---
+#  OR > 1 significa mayor probabilidad 
+
+odds_ratios <- exp(coef(modelo_logistico))
+print("Odds Ratios de las variables:")
+print(odds_ratios)
+```
+
+## INTERVALOS DE CONFIANZA
+```{r}
+## Intervalos de Confianza del modelo
+### Si el intervalo de confianza para el OR de 'Alcohol' no incluye el valor 1, se considera estadísticamente significativo.
+
+conf_int_or <- exp(confint(modelo_logistico))
+print("Intervalos de Confianza (95%) para los Odds Ratios:")
+print(conf_int_or)
+```
+
+# PREDICCIONES DE PROBABILIDAD Y MATRIZ DE CONFUSIÓN PARA LA EVALUACIÓN DE LA CAPACIDAD PREDICTIVA
+```{r}
+
+# Generar predicciones de probabilidad
+data_logistica$Prob_Desarrollado <- predict(modelo_logistico, type = "response")
+
+# Clasificar (por ejemplo, con un umbral de 0.5)
+data_logistica$Prediccion_Estatus <- ifelse(data_logistica$Prob_Desarrollado > 0.5, "Developed", "Developing")
+data_logistica$Prediccion_Estatus <- factor(data_logistica$Prediccion_Estatus, levels = c("Developing", "Developed"))
+
+# Crear Matriz de Confusión
+matriz_confusion <- table(Predicción = data_logistica$Prediccion_Estatus, Real = data_logistica$Estatus)
+print("Matriz de Confusión:")
+print(matriz_confusion)
+
+```
+
+# Estadísticas
+
+```{r}
+## Estadísticas
+le %>% summary()
+```
+
+
+PRECISIÓN DEL MODELO DE CLASIFICACIÓN
+```{r}
+## Calcular la precisión (Accuracy)
+### métrica de evaluación del  modelo de clasificación del Logit y que representa la proporción de predicciones correctas que hizo el modelo sobre el total de predicciones realizadas.
+
+accuracy <- sum(diag(matriz_confusion)) / sum(matriz_confusion)
+cat(paste("Precisión del modelo:", round(accuracy * 100, 2), "%\n"))
+```
+
+REFERENCIAS
+Burke (s/a). https://pubmed.ncbi.nlm.nih.gov/3141948/
+https://es.weforum.org/stories/2016/10/que-es-la-competitividad/
+https://www.ibm.com/mx-es/think/topics/logistic-regression
+https://www.xataka.com/magnet/mundo-esta-banado-alcohol-este-mapa-refleja-consumo-diario-a-perfeccion
+https://www.elnuevosiglo.com.co/18-anos-edad-para-consumir-licor-en-mayoria-de-paises-en-america
+https://www.freepik.es/fotos-vectores-gratis/conservacion-ambiental-dibujos-animados/7
+
+
+
