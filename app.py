@@ -57,13 +57,25 @@ st.markdown("---")
 
 @st.cache_data
 def load_data() -> DataFrame:
-    """Carga, limpia y transforma los datos de forma robusta."""
+    """Carga, limpia y transforma los datos de forma robusta, buscando el archivo
+       en la misma ubicación que app.py."""
+    
+    # 1. Obtener la ruta del directorio donde se encuentra este script (app.py)
+    # Esto garantiza que la ruta sea correcta, sin importar desde dónde se ejecute el comando.
+    script_dir = os.path.dirname(__file__)
+    
+    # 2. Construir la ruta absoluta al archivo CSV
+    file_path = os.path.join(script_dir, "Life_Expectancy_Dataset.csv")
+    
     try:
-        le = pd.read_csv("Life_Expectancy_Dataset.csv")
+        # Intentar cargar usando la ruta absoluta
+        le = pd.read_csv(file_path) 
     except FileNotFoundError:
-        st.error("Error: Asegúrate de que 'Life_Expectancy_Dataset.csv' esté en el mismo directorio.")
+        # Si aún falla, muestra un error específico de despliegue
+        st.error(f"Error: No se encontró el archivo '{file_path}'. Asegúrate de que el archivo CSV exista y tenga el nombre exacto en el repositorio.")
         return pd.DataFrame()
 
+    # --- INICIO DEL PROCESAMIENTO (el resto del código permanece igual) ---
     try:
         le.columns = le.columns.str.strip().str.replace('.', ' ', regex=False)
         
@@ -83,7 +95,7 @@ def load_data() -> DataFrame:
             'Country': 'Pais', 
             'Year': 'Año', 
             'Status': 'Estatus', 
-            'Adult Mortality': 'Mortalidad_Adultos', # Nombre corregido (Adult Mortality)
+            'Adult Mortality': 'Mortalidad_Adultos', 
             'Alcohol': 'Alcohol', 
             'Schooling': 'Escolaridad'
         })
@@ -101,7 +113,7 @@ def load_data() -> DataFrame:
         return data_logistica
 
     except KeyError as e:
-        st.error(f"Error de columna (KeyError): {e}. Asegúrate de que los nombres de columna en el CSV sean correctos.")
+        st.error(f"Error de columna (KeyError): {e}. El archivo se cargó, pero el procesamiento falló.")
         return pd.DataFrame() 
     except Exception as e:
         st.error(f"Ocurrió un error inesperado durante el procesamiento de datos: {e}")
@@ -280,3 +292,4 @@ with col10:
 
 
 st.caption("Dashboard desarrollado en Python con Streamlit, Pandas, Plotly y Statsmodels.")
+
