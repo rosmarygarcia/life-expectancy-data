@@ -1,12 +1,11 @@
-import os
 import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
 import statsmodels.api as sm
 from pandas.core.frame import DataFrame 
+import os # Importación esencial para resolver el error de ruta en GitHub
 
 # ----------------------------------------------------------------------
 # 1. Configuración de la Página y Título
@@ -27,55 +26,71 @@ st.markdown("---")
 # ----------------------------------------------------------------------
 
 with st.expander("📝 Planteamiento de la Investigación y Objetivos", expanded=False):
+    st.subheader("Título de la Investigación")
+    st.markdown("""
+    **INGESTA DE ALCOHOL: ANÁLISIS DE SU RELACIÓN CON EL ESTATUS DE LOS PAÍSES COMO EQUIVALENTE DE COMPETITIVIDAD**
+    """)
+    
     st.subheader("Planteamiento de la Investigación")
     st.markdown("""
-    La competitividad, definida por el Foro Económico Mundial (2016), es el conjunto de instituciones, políticas y factores que determinan el nivel de productividad de un país. 
+    La competitividad según la define el Forum Económico Mundial (2016), es “el conjunto de instituciones, políticas y factores que determinan el nivel de productividad de un país”.
     Esta distinción se equipara operativamente con la clasificación de **País Desarrollado o En Desarrollo (Estatus)**.
     
-    El análisis busca determinar si el consumo de alcohol (etílico) afecta o no el estatus de los países, ya que un consumo exagerado puede afectar la productividad por enfermedades, accidentes o muertes asociadas entre los trabajadores.
+    La competitividad puede inferirse de la observación del siguiente vídeo:
     
-    * **Técnica:** Regresión Logística Binaria.
-    * **Variable Dependiente (Y):** Estatus (Binario).
-    * **Variables Predictoras (X):** Alcohol (consumo per cápita), Mortalidad Adulta y Escolaridad.
-    * **Período:** Años 2008-2015.
+    ![Texto alternativo (Video Hans Rosling)](https://www.youtube.com/watch?v=jbkSRLYSojo&pp=ugMICgJlcxABGAHKBQxoYW5zIHJvc2xpbmc%3D)
+    
+    El Forum Económico Mundial elabora un Índice de Competitividad con 12 pilares. Una ilustración de este contexto es:
+    
+    ![Texto alternativo (Gráfico WEF)](https://assets.weforum.org/editor/eAYvGAf9gjxX0c3nS9widuCPy0AjnQ9DbstTRUZ6v_s.png)
+    
+    Se estudia la relación con la ingesta de alcohol, pues el consumo exagerado puede afectar la productividad. Un ejemplo gráfico del impacto en la productividad es:
+    
+    ![Texto alternativo (Infografía)](https://www.elnuevosiglo.com.co/sites/default/files/2017-09/08-INFOGRAFIA-ok.jpg)
+    
+    Hay efectos económicos no deseables por el abuso del alcohol, perjudiciales tanto para la salud como para la capacidad de las naciones de responder a desafíos futuros.
+    
+    ![Texto alternativo (Gráfico WEF 2)](https://assets.weforum.org/editor/eT9bBT0G_q9VFB0B3ZEI0VNolMHK5BeDDCuqhVcz2_Q.jpg)
+
+    La distribución global del consumo de alcohol (más de 2.000 millones de bebedores habituales) se ilustra en este mapa:
+    
+    ![Texto alternativo (Mapa de consumo de alcohol)](https://i.blogs.es/abbfb6/mapa/1366_2000.jpeg)
+    """)
+
+    st.subheader("Interrogante")
+    st.markdown("""
+    ¿Cómo es el consumo de alcohol en países desarrollados y en vías de desarrollo en 2015, medida por las variables expectativa de vida, moratlidad de adultos, muerte de infantes y escolarización afectaria la competitividad?
+    
+    ![Texto alternativo (Globo borracho 1)](https://img.freepik.com/vector-gratis/globo-terraqueo-borracho-botellas-alcohol_1308-119717.jpg)
     """)
 
     st.subheader("Objetivo General")
     st.markdown("""
-    Determinar si el consumo de alcohol es un predictor estadísticamente significativo de la clasificación de Estatus de los países miembros de la CAN, MERCOSUR, T-MEC y la Unión Europea.
-    """)
-    st.subheader("Interrogante")
-    st.markdown("""
-    ¿Cómo es el consumo de alcohol en países desarrollados y en vías de desarrollo en 2015, medida por las variables expectativa de vida, mortalidad de adultos, muerte de infantes y escolarización afectaría la competitividad?
+    Determinar si el consumo de alcohol es un predictor estadísticamente significativo de la clasificación de Estatus de los países miembros de la CAN, MERCOSUR, T-MEC y la Unión Europea utilizando un modelo de Regresión Logística Binaria.
+    
+    ![Texto alternativo (Globo borracho 2)](https://thumbs.dreamstime.com/b/tierra-borracha-del-planeta-con-la-botella-137221786.jpg?w=576)
     """)
 
 st.markdown("---")
 
 # ----------------------------------------------------------------------
-# 3. Carga y Preparación de Datos (Versión Robusta)
+# 3. Carga y Preparación de Datos (Versión Robusta para GitHub/Streamlit)
 # ----------------------------------------------------------------------
 
 @st.cache_data
 def load_data() -> DataFrame:
-    """Carga, limpia y transforma los datos de forma robusta, buscando el archivo
-       en la misma ubicación que app.py."""
+    """Carga, limpia y transforma los datos de forma robusta, asegurando la ruta del archivo."""
     
-    # 1. Obtener la ruta del directorio donde se encuentra este script (app.py)
-    # Esto garantiza que la ruta sea correcta, sin importar desde dónde se ejecute el comando.
+    # SOLUCIÓN AL ERROR: Construir la ruta absoluta relativa al script (app.py)
     script_dir = os.path.dirname(__file__)
-    
-    # 2. Construir la ruta absoluta al archivo CSV
     file_path = os.path.join(script_dir, "Life_Expectancy_Dataset.csv")
     
     try:
-        # Intentar cargar usando la ruta absoluta
         le = pd.read_csv(file_path) 
     except FileNotFoundError:
-        # Si aún falla, muestra un error específico de despliegue
-        st.error(f"Error: No se encontró el archivo '{file_path}'. Asegúrate de que el archivo CSV exista y tenga el nombre exacto en el repositorio.")
+        st.error(f"Error: No se encontró el archivo '{file_path}'. Asegúrate de que 'Life_Expectancy_Dataset.csv' exista con el nombre exacto en el directorio raíz de GitHub.")
         return pd.DataFrame()
 
-    # --- INICIO DEL PROCESAMIENTO (el resto del código permanece igual) ---
     try:
         le.columns = le.columns.str.strip().str.replace('.', ' ', regex=False)
         
@@ -113,7 +128,7 @@ def load_data() -> DataFrame:
         return data_logistica
 
     except KeyError as e:
-        st.error(f"Error de columna (KeyError): {e}. El archivo se cargó, pero el procesamiento falló.")
+        st.error(f"Error de columna (KeyError): {e}. Revise los nombres de las columnas en su CSV.")
         return pd.DataFrame() 
     except Exception as e:
         st.error(f"Ocurrió un error inesperado durante el procesamiento de datos: {e}")
@@ -133,7 +148,6 @@ y = df['Estatus_Binario']
 X_sm = sm.add_constant(X, prepend=False)
 
 try:
-    # Ajuste del modelo de Regresión Logística Binaria
     modelo_sm = sm.Logit(y, X_sm).fit(disp=0) 
 except Exception as e:
     st.error(f"Error al ajustar el modelo logístico: {e}.")
@@ -171,7 +185,6 @@ col5, col6 = st.columns(2)
 
 with col5:
     st.subheader("Coeficientes del Modelo (Log-Odds)")
-    # Muestra coeficientes y P-valores para evaluar la significancia
     st.dataframe(
         modelo_sm.summary2().tables[1][['Coef.', 'Std.Err.', 'P>|z|']].rename(
             columns={'Coef.': 'Coeficiente (Log-Odds)', 'Std.Err.': 'Error Estándar', 'P>|z|': 'Valor p'}
@@ -181,7 +194,6 @@ with col5:
 
 with col6:
     st.subheader("Interpretación: Odds Ratios (OR)")
-    # Muestra los Odds Ratios (e^Coef.)
     or_df = pd.DataFrame({
         'Variable': ['Alcohol', 'Mortalidad_Adultos', 'Escolaridad'],
         'Odds Ratio (e^Coef.)': np.exp(modelo_sm.params).iloc[[0, 1, 2]],
@@ -279,17 +291,18 @@ with col9:
     st.markdown(f"""
     1.  **Precisión General:** La precisión del modelo es del **{accuracy*100:.2f}%**.
     2.  **Sensibilidad Perfecta (Developed):** El modelo logró **cero Falsos Negativos (FN=0)**, lo que significa que **nunca se equivocó al clasificar a un país Desarrollado** como "En Desarrollo".
-    3.  **Error Principal (Falsos Positivos):** La fuente principal de error son los **38 Falsos Positivos (FP=38)**. Estos son países que son **En Desarrollo** pero que el modelo clasificó incorrectamente como Desarrollados. Esto sugiere que algunas naciones en desarrollo exhiben características (alto consumo de alcohol, buena escolaridad, o baja mortalidad) que imitan el perfil de un país desarrollado.
+    3.  **Error Principal (Falsos Positivos):** La fuente principal de error son los **38 Falsos Positivos (FP=38)**. Estos son países **En Desarrollo** que el modelo predijo incorrectamente como Desarrollados.
     """)
 
 with col10:
     st.subheader("Interpretación de Variables (Odds Ratios)")
     st.markdown("""
-    * **Alcohol (Consumo per cápita):** El consumo de alcohol es un **predictor positivo y significativo** del estatus. Un aumento en el consumo de alcohol aumenta las *Odds* de ser Desarrollado. Esto no implica causalidad, sino que los países Desarrollados tienden a tener un mayor consumo per cápita de alcohol.
-    * **Escolaridad:** Actúa como se espera. Un mayor nivel de Escolaridad está fuertemente asociado con el aumento de las *Odds* de ser Desarrollado, lo cual es coherente con el pilar de Educación del Índice de Competitividad.
-    * **Mortalidad Adulta:** Actúa como se espera. Un aumento en la Mortalidad Adulta está asociado con una **disminución** de las *Odds* de ser clasificado como Desarrollado, siendo un indicador de problemas de salud y desarrollo.
+    * **Alcohol (Consumo per cápita):** El consumo de alcohol es un **predictor positivo y significativo** del estatus. Un aumento en el consumo de alcohol aumenta las *Odds* de ser Desarrollado.
+    * **Escolaridad:** Es un predictor positivo (OR > 1), fuertemente asociado con el aumento de las *Odds* de ser Desarrollado.
+    * **Mortalidad Adulta:** Es un predictor negativo (OR < 1). Un aumento en la Mortalidad Adulta está asociado con una **disminución** de las *Odds* de ser clasificado como Desarrollado.
     """)
 
-
 st.caption("Dashboard desarrollado en Python con Streamlit, Pandas, Plotly y Statsmodels.")
+st.caption("Dashboard desarrollado en Python con Streamlit, Pandas, Plotly y Statsmodels.")
+
 
