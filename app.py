@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -276,5 +277,6 @@ with col10:
     * **Escolaridad:** Actúa como se espera. Un mayor nivel de Escolaridad está fuertemente asociado con el aumento de las *Odds* de ser Desarrollado, lo cual es coherente con el pilar de Educación del Índice de Competitividad.
     * **Mortalidad Adulta:** Actúa como se espera. Un aumento en la Mortalidad Adulta está asociado con una **disminución** de las *Odds* de ser clasificado como Desarrollado, siendo un indicador de problemas de salud y desarrollo.
     """)
+
 
 st.caption("Dashboard desarrollado en Python con Streamlit, Pandas, Plotly y Statsmodels.")
